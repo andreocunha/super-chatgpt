@@ -8,21 +8,24 @@ export enum TriggerMode {
 }
 
 export const TRIGGER_MODE_TEXT = {
-  [TriggerMode.Always]: { title: 'Always', desc: 'ChatGPT is queried on every search' },
+  [TriggerMode.Always]: {
+    title: 'Sempre',
+    desc: 'O ChatGPT é consultado em todas as pesquisas',
+  },
   [TriggerMode.QuestionMark]: {
-    title: 'Question Mark',
-    desc: 'When your query ends with a question mark (?)',
+    title: 'Ponto de interrogação',
+    desc: 'Quando sua consulta termina com um ponto de interrogação (?)',
   },
   [TriggerMode.Manually]: {
-    title: 'Manually',
-    desc: 'ChatGPT is queried when you manually click a button',
+    title: 'Manualmente',
+    desc: 'O ChatGPT é consultado quando você clica manualmente em um botão',
   },
 }
 
 export enum Theme {
   Auto = 'auto',
-  Light = 'light',
-  Dark = 'dark',
+  Claro = 'light',
+  Escuro = 'dark',
 }
 
 export enum Language {
@@ -39,7 +42,7 @@ export enum Language {
 
 const userConfigWithDefaultValue = {
   triggerMode: TriggerMode.Always,
-  theme: Theme.Light,
+  theme: Theme.Claro,
   language: Language.Portuguese,
   googleSearch: true,
 }

@@ -111,9 +111,7 @@ function ChatGPTQuery(props: Props) {
               return (
                 <span className="block mt-2">
                   Still not working? Follow{' '}
-                  <a href="https://github.com/andreocunha">
-                    Contact me on GitHub
-                  </a>
+                  <a href="https://github.com/andreocunha">Contact me on GitHub</a>
                 </span>
               )
             } else {
@@ -137,7 +135,7 @@ function ChatGPTQuery(props: Props) {
     )
   }
 
-  return <p className="text-[#b6b8ba] animate-pulse">Waiting for ChatGPT response...</p>
+  return <p className="text-[#b6b8ba] animate-pulse">Esperando pela resposta do ChatGPT...</p>
 }
 
 export default memo(ChatGPTQuery)

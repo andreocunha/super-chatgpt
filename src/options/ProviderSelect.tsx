@@ -44,7 +44,7 @@ const ConfigPanel: FC<ConfigProps> = ({ config, models }) => {
     <div className="flex flex-col gap-3">
       <Tabs value={tab} onChange={(v) => setTab(v as ProviderType)}>
         <Tabs.Item label="ChatGPT webapp" value={ProviderType.ChatGPT}>
-          The API that powers ChatGPT webapp, free, but sometimes unstable
+          A API que fornece o ChatGPT, gratuita, mas às vezes instável.
         </Tabs.Item>
         <Tabs.Item label="OpenAI API" value={ProviderType.GPT3}>
           <div className="flex flex-col gap-2">
