@@ -66,7 +66,7 @@ export default function AluraForum() {
         Referência do curso: ${referenceTopic}
         Fórum: ${question}
 
-        Reposta com no máximo 2000 palavras. Priorize respostas simples e objetivas. Sempre que possível use trechos de código para explicar sua resposta, se necessário.
+        Reposta com no máximo 2000 palavras. Respostas simples e objetivas. Sempre que possível use trechos de código para explicar sua resposta, se necessário.
       `)
 
       setButtonClicked(false)

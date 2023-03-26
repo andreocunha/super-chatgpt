@@ -44,14 +44,45 @@ Responda em Markdown. Respostas diretas e curtas são bem vindas.
     }
   }, [search])
 
+  function listen() {
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new webkitSpeechRecognition()
+      recognition.lang = 'pt-BR'
+      recognition.interimResults = true
+
+      const textareaElement = document.querySelector('.chatgpt-search') as HTMLTextAreaElement
+
+      recognition.onresult = (event: any) => {
+        const result = event.results[event.resultIndex]
+        if (result.isFinal) {
+          textareaElement.value = result[0].transcript
+          setSearch(result[0].transcript)
+        } else {
+          textareaElement.value = result[0].transcript
+        }
+      }
+
+      recognition.start()
+    } else {
+      alert(
+        'Seu navegador não suporta o recurso de reconhecimento de voz. Por favor, tente com o Google Chrome.',
+      )
+    }
+  }
+
   return (
     <div className="chat-gpt-container-cursos">
-      <textarea
-        className="chatgpt-search"
-        placeholder="Digite aqui sua dúvida do vídeo"
-        onChange={(e) => setSearch(e.target.value)}
-        required
-      />
+      <div className="chat-gpt-search-container">
+        <textarea
+          className="chatgpt-search"
+          placeholder="Digite aqui sua dúvida do vídeo"
+          onChange={(e) => setSearch(e.target.value)}
+          required
+        />
+        <button id="startButton" onClick={listen}>
+          🎤
+        </button>
+      </div>
       {question && (
         <div className="chat-gpt-card">
           <ChatGPTCard question={question} triggerMode={TriggerMode.Manually} />
