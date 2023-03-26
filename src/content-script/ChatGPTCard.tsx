@@ -22,7 +22,8 @@ function ChatGPTCard(props: Props) {
     }
     return (
       <p className="icon-and-text">
-        <LightBulbIcon size="small" /> Trigger ChatGPT by appending a question mark after your query
+        <LightBulbIcon size="small" /> Ative o ChatGPT adicionando um ponto de interrogação ao final
+        da sua pergunta.
       </p>
     )
   }

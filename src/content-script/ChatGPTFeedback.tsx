@@ -61,32 +61,47 @@ function ChatGPTFeedback(props: Props) {
   function startSpeak() {
     const text = props.answerText
     if (!text) return
+
     const textChunks = text.split('.').filter((chunk) => chunk.trim().length > 0)
 
     // clear any previous speech
     window.speechSynthesis.cancel()
 
-    setIsSpeaking(true)
-    const speakChunk = (index: number) => {
-      if (index >= textChunks.length) {
-        setIsSpeaking(null)
-        return
+    const onVoicesChanged = () => {
+      setIsSpeaking(true)
+      const speakChunk = (index: number) => {
+        if (index >= textChunks.length) {
+          setIsSpeaking(null)
+          return
+        }
+
+        const utterance = new SpeechSynthesisUtterance(textChunks[index])
+        utterance.lang = 'pt-BR'
+        utterance.rate = 1.25
+        utterance.pitch = 0.85
+        utterance.volume = 1
+
+        const voices = window.speechSynthesis.getVoices()
+        const voice = voices.find((voice) => voice.name === 'Google português do Brasil')
+        if (voice) {
+          utterance.voice = voice
+        }
+
+        utterance.addEventListener('end', () => {
+          speakChunk(index + 1)
+        })
+
+        window.speechSynthesis.speak(utterance)
       }
 
-      const utterance = new SpeechSynthesisUtterance(textChunks[index])
-      utterance.lang = 'pt-BR'
-      utterance.rate = 1.25
-      utterance.pitch = 0.9
-      utterance.volume = 1
-
-      utterance.addEventListener('end', () => {
-        speakChunk(index + 1)
-      })
-
-      window.speechSynthesis.speak(utterance)
+      speakChunk(0)
     }
 
-    speakChunk(0)
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.addEventListener('voiceschanged', onVoicesChanged)
+    } else {
+      onVoicesChanged()
+    }
   }
 
   const pauseSpeaking = () => {
